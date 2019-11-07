@@ -26,12 +26,12 @@ output=$output
         </configfile>
     </configfiles>
     <inputs>
-        <param format="bed" name="targetFile" type="data" label="Target regions (BED)">
+        <param name="targetFile" type="data" format="bed" label="Target regions (BED)">
             <validator type="unspecified_build" />
         </param>
         <param name="test_vs_ref" type="boolean" truevalue="TRUE" falsevalue="FALSE" checked="false" label="Call CNVs using 1st sample as test" help="If checked, the tool will call CNVs in the first sample vs all the others. If unchecked, an all vs all CNV call will be performed" />
         <repeat name="inputs" title="BAM" min="2" help="Need to add more files? Use controls below.">
-            <param format="bam" name="input" type="data" label="BAM file">
+            <param name="input" type="data" format="bam" label="BAM file">
                 <options>
                     <filter type="data_meta" ref="targetFile" key="dbkey"/>
                 </options>
@@ -43,7 +43,7 @@ output=$output
        <param name="transition_probability" size="10" type="float" value="0.0001" label="Transition probability" help="Transition probability of the hidden Markov Chain from the normal copy number state to either a deletion or a duplication. The default value (0.0001) expects approximately 20 CNVs genome-wide" />
     </inputs>
     <outputs>
-        <data format="tabular" name="output" label="${tool.name} on ${on_string}" />
+        <data name="output" format="tabular" label="${tool.name} on ${on_string}" />
     </outputs>
     <help><![CDATA[
 .. class:: warningmark
