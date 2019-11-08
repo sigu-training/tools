@@ -1,7 +1,7 @@
-<tool id="exomedepth" name="ExomeDepth" version="1.1.12">
+<tool id="exomedepth" name="ExomeDepth" version="1.1.0">
     <description>Calls copy number variants (CNVs) from targeted sequence data</description>
     <requirements>
-        <requirement type="package" version="1.1.12">r-exomedepth</requirement>
+        <requirement type="package" version="1.1.10">r-exomedepth</requirement>
     </requirements>
     <version_command><![CDATA[
 echo $(R --version | grep version | grep -v GNU)", ExomeDepth version" $(R --vanilla --slave -e "library(ExomeDepth); cat(sessionInfo()\$otherPkgs\$ExomeDepth\$Version)")
@@ -46,6 +46,28 @@ output=$output
     <outputs>
         <data name="output" format="tabular" label="${tool.name} on ${on_string}" />
     </outputs>
+    <tests>
+      <test>
+	<param name="targetFile" value="CNV_TruSeq_Chr2.bed" dbkey="hg19" ftype="bed"/>
+	<param name="test_vs_ref" value="True"/>
+	<repeat name="inputs">
+	   <param name="input" value="CNV_case.bam"/>
+	</repeat>
+	<repeat name="inputs">
+	  <param name="input" value="CNV_control.bam"/>
+	</repeat>
+        <param name="transition_probability" value="0.0001"/>
+        <output name="output">
+	  <assert_contents>
+            <has_text text="chr2" />    
+	    <has_text text="97881039" />
+	    <has_text text="98129826" />
+	    <has_text text="deletion" />
+	    <has_text text="CNV_case" />	    
+	  </assert_contents>
+	</output>
+      </test>
+    </tests>
     <help><![CDATA[
 .. class:: warningmark
 
