@@ -10,7 +10,8 @@ echo $(R --version | grep version | grep -v GNU)", ExomeDepth version" $(R --van
 R CMD BATCH --no-save --no-restore '--args mypars="$args_file"' $__tool_directory__/exomedepth.R
     ]]></command>
     <configfiles>
-        <configfile name="args_file">target=$targetFile
+      <configfile name="args_file"><![CDATA[
+target=$targetFile
 test_vs_ref=$test_vs_ref
 #for $i in $inputs
 bam=${i.input}
@@ -23,7 +24,7 @@ bam_label=${i.input.dataset.name}
 #end for
 trans_prob=$transition_probability
 output=$output
-        </configfile>
+        ]]></configfile>
     </configfiles>
     <inputs>
         <param name="targetFile" type="data" format="bed" label="Target regions (BED)">
