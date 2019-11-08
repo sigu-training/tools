@@ -51,19 +51,19 @@ output=$output
 	<param name="targetFile" value="CNV_TruSeq_Chr2.bed" dbkey="hg19" ftype="bed"/>
 	<param name="test_vs_ref" value="True"/>
 	<repeat name="inputs">
-	   <param name="input" value="CNV_case.bam"/>
+	   <param name="input" value="CNV_case_small.bam"/>
 	</repeat>
 	<repeat name="inputs">
-	  <param name="input" value="CNV_control.bam"/>
+	  <param name="input" value="CNV_control_small.bam"/>
 	</repeat>
-        <param name="transition_probability" value="0.0001"/>
+        <param name="transition_probability" value="0.5"/>
         <output name="output">
 	  <assert_contents>
             <has_text text="chr2" />    
-	    <has_text text="97881039" />
-	    <has_text text="98129826" />
+	    <has_text text="97890544" />
+	    <has_text text="97890616" />
 	    <has_text text="deletion" />
-	    <has_text text="CNV_case" />	    
+	    <has_text text="CNV_case_small" />	    
 	  </assert_contents>
 	</output>
       </test>
