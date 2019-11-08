@@ -3,8 +3,7 @@ suppressMessages(library(ExomeDepth))
 
 # Import parameters from xml wrapper (args_file)
 args  <- commandArgs(trailingOnly=TRUE)
-eval(parse(text=args[[1]]))
-param <- read.table(mypars,sep="=", as.is=TRUE)
+param <- read.table(args[1],sep="=", as.is=TRUE)
 
 # Set common parameters
 target      <- param[match("target",param[,1]),2]

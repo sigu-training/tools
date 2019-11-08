@@ -7,7 +7,7 @@
 echo $(R --version | grep version | grep -v GNU)", ExomeDepth version" $(R --vanilla --slave -e "library(ExomeDepth); cat(sessionInfo()\$otherPkgs\$ExomeDepth\$Version)")
     ]]></version_command>
     <command detect_errors="exit_code"><![CDATA[
-R CMD BATCH --no-save --no-restore '--args mypars="$args_file"' $__tool_directory__/exomedepth.R
+    Rscript '${__tool_directory__}/exomedepth.R' '$args_file'
     ]]></command>
     <configfiles>
       <configfile name="args_file"><![CDATA[
